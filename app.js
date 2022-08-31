@@ -9,12 +9,15 @@ const bodyParser = require('body-parser');
 const sequelize = require('./util/database');
 const User=require('./models/user');
 const Message=require('./models/messages');
+const Group=require('./models/groups');
+const Usergroup=require('./models/usergroups');
 
 const cors = require('cors')
 
 //routes.........
 const signlogin=require('./routes/loginsignup');
 const messageroute=require('./routes/message');
+const CreateGroup=require('./routes/creategroup');
 
 
 const app = express();
@@ -28,10 +31,14 @@ app.use(cors());
 
 app.use(signlogin);
 app.use(messageroute);
+app.use(CreateGroup);
 
 
 User.hasMany(Message);
 Message.belongsTo(User);
+
+User.belongsToMany(Group,{through:Usergroup});
+Group.belongsToMany(User,{through:Usergroup});
 
 
 sequelize
