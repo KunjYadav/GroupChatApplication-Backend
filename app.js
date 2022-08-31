@@ -16,7 +16,9 @@ const cors = require('cors')
 const signlogin=require('./routes/loginsignup');
 const messageroute=require('./routes/message');
 
+
 const app = express();
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
