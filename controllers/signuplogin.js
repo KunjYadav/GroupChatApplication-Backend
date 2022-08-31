@@ -20,6 +20,7 @@ exports.postsignup = async(req, res) => {
       res.json(err);
     });
 };
+
 exports.postlogin = async (req, res) => {
   const { email, pwd } = req.body;
 
